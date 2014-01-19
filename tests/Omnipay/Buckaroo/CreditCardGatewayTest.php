@@ -4,20 +4,20 @@ namespace Omnipay\Buckaroo;
 
 use Omnipay\Tests\GatewayTestCase;
 
-class GatewayTest extends GatewayTestCase
+class CreditCardGatewayTest extends GatewayTestCase
 {
     public function setUp()
     {
         parent::setUp();
 
-        $this->gateway = new Gateway($this->getHttpClient(), $this->getHttpRequest());
+        $this->gateway = new CreditCardGateway($this->getHttpClient(), $this->getHttpRequest());
     }
 
     public function testPurchase()
     {
         $request = $this->gateway->purchase(array('amount' => '10.00'));
 
-        $this->assertInstanceOf('Omnipay\Buckaroo\Message\PurchaseRequest', $request);
+        $this->assertInstanceOf('Omnipay\Buckaroo\Message\CreditCardPurchaseRequest', $request);
         $this->assertSame('10.00', $request->getAmount());
     }
 

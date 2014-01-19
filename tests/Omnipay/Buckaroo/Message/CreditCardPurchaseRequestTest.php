@@ -4,11 +4,11 @@ namespace Omnipay\Buckaroo\Message;
 
 use Omnipay\Tests\TestCase;
 
-class IdealPurchaseRequestTest extends TestCase
+class CreditCardPurchaseRequestTest extends TestCase
 {
     public function setUp()
     {
-        $this->request = new IdealPurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
+        $this->request = new CreditCardPurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
         $this->request->initialize(
             array(
                 'websiteKey' => 'web',
@@ -23,6 +23,6 @@ class IdealPurchaseRequestTest extends TestCase
     {
         $data = $this->request->getData();
 
-        $this->assertSame('ideal', $data['Brq_payment_method']);
+        $this->assertSame('visa', $data['Brq_payment_method']);
     }
 }

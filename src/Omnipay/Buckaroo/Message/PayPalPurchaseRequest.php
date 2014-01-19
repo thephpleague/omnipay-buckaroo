@@ -5,7 +5,13 @@ namespace Omnipay\Buckaroo\Message;
 /**
  * Buckaroo PayPal Purchase Request
  */
-class PayPalPurchaseRequest extends PurchaseRequest
+class PayPalPurchaseRequest extends AbstractRequest
 {
-    protected $endpoint = 'https://payment.buckaroo.nl/gateway/paypal_payment.asp';
+    public function getData()
+    {
+        $data = parent::getData();
+        $data['Brq_payment_method'] = 'paypal';
+
+        return $data;
+    }
 }

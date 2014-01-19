@@ -10,23 +10,19 @@ class CompletePurchaseRequestTest extends TestCase
     {
         $this->request = new CompletePurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
         $this->request->initialize(array(
-            'merchantId' => 'merchant id',
+            'websiteKey' => 'web',
             'transactionId' => 13,
-            'secret' => 'shhhh',
+            'secretKey' => 'shhhh',
             'amount' => '12.00',
             'currency' => 'ZAR',
             'testMode' => true,
         ));
-        $this->getHttpRequest()->request->replace(array(
-            'bpe_signature2' => '351fad9e06e1aa041ec48726e0d98b81',
-            'bpe_trx' => 'tricky',
-            'bpe_timestamp' => '123456',
-            'bpe_result' => 'success',
-        ));
+        $this->getHttpRequest()->request->replace(array());
     }
 
     public function testGetData()
     {
+        $this->getHttpRequest()->request->set('Brq_signature', $this->request->generateSignature($this->getHttpRequest()->request->all()));
         $data = $this->request->getData();
 
         $this->assertSame($this->getHttpRequest()->request->all(), $data);
@@ -34,52 +30,40 @@ class CompletePurchaseRequestTest extends TestCase
 
     /**
      * @expectedException Omnipay\Common\Exception\InvalidRequestException
+     * @expectedExceptionMessage Incorrect signature
      */
     public function testGetDataInvalidSignature()
     {
-        $this->getHttpRequest()->request->set('bpe_signature2', 'zzz');
+        $this->getHttpRequest()->request->set('Brq_signature', 'zzz');
 
         $this->request->getData();
     }
 
-    public function testGenerateResponseSignature()
-    {
-        $this->request->initialize(array(
-            'merchantId' => 'merchant id',
-            'transactionId' => 13,
-            'secret' => 'shhhh',
-            'amount' => '12.00',
-            'currency' => 'ZAR',
-            'testMode' => true,
-        ));
-        $this->getHttpRequest()->request->replace(array(
-            'bpe_trx' => 'tricky',
-            'bpe_timestamp' => '123456',
-            'bpe_result' => 'success',
-        ));
-
-        $this->assertSame('351fad9e06e1aa041ec48726e0d98b81', $this->request->generateResponseSignature());
-    }
-
     public function testSendSuccess()
     {
-        $this->getHttpRequest()->request->set('bpe_result', '100');
-        $this->getHttpRequest()->request->set('bpe_signature2', $this->request->generateResponseSignature());
+        $this->getHttpRequest()->request->set('Brq_payment', '5');
+        $this->getHttpRequest()->request->set('Brq_statuscode', '190');
+        $this->getHttpRequest()->request->set('Brq_statusmessage', 'msg');
+        $this->getHttpRequest()->request->set('Brq_signature', $this->request->generateSignature($this->getHttpRequest()->request->all()));
         $response = $this->request->send();
 
         $this->assertTrue($response->isSuccessful());
-        $this->assertSame('tricky', $response->getTransactionReference());
-        $this->assertSame('100', $response->getCode());
+        $this->assertSame('5', $response->getTransactionReference());
+        $this->assertSame('190', $response->getCode());
+        $this->assertSame('msg', $response->getMessage());
     }
 
     public function testSendError()
     {
-        $this->getHttpRequest()->request->set('bpe_result', '999');
-        $this->getHttpRequest()->request->set('bpe_signature2', $this->request->generateResponseSignature());
+        $this->getHttpRequest()->request->set('Brq_payment', '5');
+        $this->getHttpRequest()->request->set('Brq_statuscode', '999');
+        $this->getHttpRequest()->request->set('Brq_statusmessage', 'msg');
+        $this->getHttpRequest()->request->set('Brq_signature', $this->request->generateSignature($this->getHttpRequest()->request->all()));
         $response = $this->request->send();
 
         $this->assertFalse($response->isSuccessful());
-        $this->assertSame('tricky', $response->getTransactionReference());
+        $this->assertSame('5', $response->getTransactionReference());
         $this->assertSame('999', $response->getCode());
+        $this->assertSame('msg', $response->getMessage());
     }
 }
