@@ -56,6 +56,19 @@ class PurchaseRequestTest extends TestCase
         $this->assertSame($expected, $this->request->generateSignature($data));
     }
 
+    public function testGenerateSignatureCaseInsensitivity()
+    {
+        $this->request->setSecretKey('secret');
+        $data = array(
+            'Brq_websitekey' => 'a',
+            'Brq_amount' => 'b',
+            'BrQ_SIgnatURE' => 'ignore',
+        );
+
+        $expected = sha1('Brq_amount=bBrq_websitekey=asecret');
+        $this->assertSame($expected, $this->request->generateSignature($data));
+    }
+
     public function testSend()
     {
         $response = $this->request->send();

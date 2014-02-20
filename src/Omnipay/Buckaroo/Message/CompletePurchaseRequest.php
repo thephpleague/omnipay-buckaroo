@@ -15,7 +15,10 @@ class CompletePurchaseRequest extends AbstractRequest
 
         $data = $this->httpRequest->request->all();
 
-        if (strtolower($this->httpRequest->request->get('Brq_signature')) !== $this->generateSignature($data)) {
+        $upperCaseKeysData = array_change_key_case($data, CASE_UPPER);
+        $signature = strtolower($upperCaseKeysData['BRQ_SIGNATURE']);
+
+        if ($signature !== $this->generateSignature($data)) {
             throw new InvalidRequestException('Incorrect signature');
         }
 
