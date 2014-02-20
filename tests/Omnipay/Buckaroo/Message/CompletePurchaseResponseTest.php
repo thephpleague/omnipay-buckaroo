@@ -9,9 +9,9 @@ class CompletePurchaseResponseTest extends TestCase
     public function testSuccess()
     {
         $data = array(
-            'Brq_statuscode' => '190',
-            'Brq_statusmessage' => 'hi!',
-            'Brq_payment' => '5',
+            'BRQ_STATUSCODE' => '190',
+            'BRQ_STATUSMESSAGE' => 'hi!',
+            'BRQ_PAYMENT' => '5',
         );
 
         $response = new CompletePurchaseResponse($this->getMockRequest(), $data);

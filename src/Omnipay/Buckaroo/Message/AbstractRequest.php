@@ -48,11 +48,13 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 
     public function generateSignature($data)
     {
-        unset($data['Brq_signature']);
         uksort($data, 'strcasecmp');
 
         $str = '';
         foreach ($data as $key => $value) {
+            if (strcasecmp($key, 'Brq_signature') === 0) {
+                continue;
+            }
             $str .= $key.'='.$value;
         }
 

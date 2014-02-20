@@ -25,7 +25,15 @@ class CompletePurchaseRequestTest extends TestCase
         $this->getHttpRequest()->request->set('Brq_signature', $this->request->generateSignature($this->getHttpRequest()->request->all()));
         $data = $this->request->getData();
 
-        $this->assertSame($this->getHttpRequest()->request->all(), $data);
+        $this->assertSame(array_change_key_case($this->getHttpRequest()->request->all(), CASE_UPPER), $data);
+    }
+
+    public function testGetDataSignatureKeyCaseInsensitivity()
+    {
+        $this->getHttpRequest()->request->set('Brq_SignATure', $this->request->generateSignature($this->getHttpRequest()->request->all()));
+        $data = $this->request->getData();
+
+        $this->assertArrayHasKey('BRQ_SIGNATURE', $data);
     }
 
     /**
@@ -35,6 +43,17 @@ class CompletePurchaseRequestTest extends TestCase
     public function testGetDataInvalidSignature()
     {
         $this->getHttpRequest()->request->set('Brq_signature', 'zzz');
+
+        $this->request->getData();
+    }
+
+    /**
+     * @expectedException Omnipay\Common\Exception\InvalidRequestException
+     * @expectedExceptionMessage Incorrect signature
+     */
+    public function testGetDataMissingSignature()
+    {
+        $this->getHttpRequest()->request->replace(array());
 
         $this->request->getData();
     }
