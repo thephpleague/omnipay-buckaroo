@@ -28,6 +28,14 @@ class CompletePurchaseRequestTest extends TestCase
         $this->assertSame($this->getHttpRequest()->request->all(), $data);
     }
 
+    public function testGetDataSignatureKeyCaseInsensitivity()
+    {
+        $this->getHttpRequest()->request->set('Brq_SignATure', $this->request->generateSignature($this->getHttpRequest()->request->all()));
+        $data = $this->request->getData();
+
+        $this->assertSame($this->getHttpRequest()->request->all(), $data);
+    }
+
     /**
      * @expectedException Omnipay\Common\Exception\InvalidRequestException
      * @expectedExceptionMessage Incorrect signature

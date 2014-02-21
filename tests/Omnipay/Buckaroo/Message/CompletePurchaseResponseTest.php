@@ -22,6 +22,22 @@ class CompletePurchaseResponseTest extends TestCase
         $this->assertSame('5', $response->getTransactionReference());
     }
 
+    public function testKeyCaseInsensitivity()
+    {
+        $data = array(
+            'Brq_STATUSCODE' => '190',
+            'Brq_statusMESSAGE' => 'hi!',
+            'BRQ_payment' => '5',
+        );
+
+        $response = new CompletePurchaseResponse($this->getMockRequest(), $data);
+
+        $this->assertTrue($response->isSuccessful());
+        $this->assertSame('190', $response->getCode());
+        $this->assertSame('hi!', $response->getMessage());
+        $this->assertSame('5', $response->getTransactionReference());
+    }
+
     public function testEmpty()
     {
         $response = new CompletePurchaseResponse($this->getMockRequest(), array());
