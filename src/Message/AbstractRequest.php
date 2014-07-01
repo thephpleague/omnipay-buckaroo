@@ -19,6 +19,16 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     {
         return $this->setParameter('websiteKey', $value);
     }
+    
+    public function getCulture()
+    {
+        return $this->getParameter('culture');
+    }
+
+    public function setCulture($value)
+    {
+        return $this->setParameter('culture', $value);
+    }
 
     public function getSecretKey()
     {
@@ -40,6 +50,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         $data['Brq_currency'] = $this->getCurrency();
         $data['Brq_invoicenumber'] = $this->getTransactionId();
         $data['Brq_description'] = $this->getDescription();
+        $data['Brq_culture'] = $this->getCulture();
         $data['Brq_return'] = $this->getReturnUrl();
         $data['Brq_returncancel'] = $this->getCancelUrl();
 
