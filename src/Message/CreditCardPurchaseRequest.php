@@ -11,8 +11,7 @@ class CreditCardPurchaseRequest extends AbstractRequest
     {
         $data = parent::getData();
 
-        if ( ! isset( $data['Brq_requestedservices'] ) || empty( $data['Brq_requestedservices'] ) )
-        {
+        if ( ! isset( $data['Brq_requestedservices'] ) || empty( $data['Brq_requestedservices'] ) ) {
             $data['Brq_requestedservices'] = 'mastercard,visa,maestro';
         }
 
