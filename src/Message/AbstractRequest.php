@@ -30,6 +30,16 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->setParameter('secretKey', $value);
     }
 
+    public function getRequestedServices($value)
+    {
+        return $this->getParameter('requestedServices');
+    }
+
+    public function setRequestedServices($value)
+    {
+        return $this->setParameter('requestedServices', $value);
+    }
+
     public function getData()
     {
         $this->validate('websiteKey', 'secretKey', 'amount', 'returnUrl');
@@ -40,8 +50,10 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         $data['Brq_currency'] = $this->getCurrency();
         $data['Brq_invoicenumber'] = $this->getTransactionId();
         $data['Brq_description'] = $this->getDescription();
+        $data['Brq_requestedservices'] = $this->getRequestedServices();
         $data['Brq_return'] = $this->getReturnUrl();
         $data['Brq_returncancel'] = $this->getCancelUrl();
+
 
         return $data;
     }

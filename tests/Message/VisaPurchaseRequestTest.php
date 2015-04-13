@@ -23,6 +23,6 @@ class CreditCardPurchaseRequestTest extends TestCase
     {
         $data = $this->request->getData();
 
-        $this->assertSame('mastercard,visa,maestro', $data['Brq_requestedservices']);
+        $this->assertSame('visa', $data['Brq_payment_method']);
     }
 }

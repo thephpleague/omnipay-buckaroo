@@ -3,14 +3,17 @@
 namespace Omnipay\Buckaroo\Message;
 
 /**
- * Buckaroo Credit Card Purchase Request
+ * Buckaroo CrediCard Purchase Request
  */
 class CreditCardPurchaseRequest extends AbstractRequest
 {
     public function getData()
     {
         $data = parent::getData();
-        $data['Brq_payment_method'] = 'visa';
+
+        if ( ! isset( $data['Brq_requestedservices'] ) || empty( $data['Brq_requestedservices'] ) ) {
+        	$data['Brq_requestedservices'] = 'mastercard,visa,maestro';
+        }
 
         return $data;
     }
