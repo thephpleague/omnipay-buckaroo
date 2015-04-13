@@ -43,7 +43,9 @@ class BuckarooGateway extends AbstractGateway
         return $this->setParameter('secretKey', $value);
     }
 
-    public function purchase(array $parameters = array()) {}
+    public function purchase(array $parameters = array())
+    {
+    }
 
     public function completePurchase(array $parameters = array())
     {
