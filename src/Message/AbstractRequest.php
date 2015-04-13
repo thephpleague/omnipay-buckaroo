@@ -30,7 +30,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->setParameter('secretKey', $value);
     }
 
-    public function getRequestedServices($value)
+    public function getRequestedServices()
     {
         return $this->getParameter('requestedServices');
     }
