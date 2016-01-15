@@ -1,5 +1,5 @@
 {
-    "name": "omnipay/buckaroo",
+    "name": "reprovinci/omnipay-buckaroo",
     "type": "library",
     "description": "Buckaroo driver for the Omnipay payment processing library",
     "keywords": [
