@@ -19,6 +19,7 @@ class AfterpayPurchaseRequest extends AbstractRequest
         $data['Brq_service_afterpaydigiaccept_BillingGender'] = $this->getParameter('gender');
         $data['Brq_service_afterpaydigiaccept_BillingInitials'] = $this->getParameter('initials');
         $data['Brq_service_afterpaydigiaccept_BillingLastName'] = $this->getParameter('lastname');
+        $data['Brq_service_afterpaydigiaccept_BillingLastNamePrefix'] = $this->getParameter('lastnamePrefix');
         $data['Brq_service_afterpaydigiaccept_BillingBirthDate'] = $this->getParameter('birthdate');
         $data['Brq_service_afterpaydigiaccept_BillingStreet'] = $this->getParameter('street');
         $data['Brq_service_afterpaydigiaccept_BillingHouseNumber'] = $this->getParameter('housenumber');
@@ -34,7 +35,7 @@ class AfterpayPurchaseRequest extends AbstractRequest
         $data['Brq_service_afterpaydigiaccept_ArticleQuantity_1'] = $this->getParameter('articleQuantity');
         $data['Brq_service_afterpaydigiaccept_ArticleUnitprice_1'] = $this->getParameter('articleUnitPrice');
         $data['Brq_service_afterpaydigiaccept_ArticleVatcategory_1'] = $this->getParameter('articleVatCategory');
-        
+
         return $data;
     }
 
@@ -64,6 +65,15 @@ class AfterpayPurchaseRequest extends AbstractRequest
     {
         $this->setParameter('lastname',$lastname);
     }
+
+    /**
+     * @param mixed $lastname
+     */
+    public function setLastnamePrefix($lastnamePrefix)
+    {
+        $this->setParameter('lastnamePrefix',$lastnamePrefix);
+    }
+
 
     /**
      * @param mixed $birthdate
