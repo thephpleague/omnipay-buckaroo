@@ -31,7 +31,7 @@ And run composer to update your dependencies:
 
 The following gateways are provided by this package:
 
-* Buckaroo
+* Buckaroo_CreditCard
 * Buckaroo_Ideal
 * Buckaroo_PayPal
 
