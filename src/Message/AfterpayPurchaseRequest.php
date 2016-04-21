@@ -10,7 +10,7 @@ class AfterpayPurchaseRequest extends AbstractRequest
     public function getData()
     {
         $data = parent::getData();
-        
+
         $data['Brq_payment_method'] = 'afterpaydigiaccept';
         $data['Brq_service_afterpaydigiaccept_action'] = 'Pay';
         $data['Brq_returnerror'] = $this->getErrorUrl();
@@ -23,6 +23,7 @@ class AfterpayPurchaseRequest extends AbstractRequest
         $data['Brq_service_afterpaydigiaccept_BillingBirthDate'] = $this->getParameter('birthdate');
         $data['Brq_service_afterpaydigiaccept_BillingStreet'] = $this->getParameter('street');
         $data['Brq_service_afterpaydigiaccept_BillingHouseNumber'] = $this->getParameter('housenumber');
+        $data['Brq_service_afterpaydigiaccept_BillingHouseNumberSuffix'] = $this->getParameter('housenumberSuffix');
         $data['Brq_service_afterpaydigiaccept_BillingPostalCode'] = $this->getParameter('postalcode');
         $data['Brq_service_afterpaydigiaccept_BillingCity'] = $this->getParameter('city');
         $data['Brq_service_afterpaydigiaccept_BillingCountry'] = $this->getParameter('country');
@@ -97,6 +98,14 @@ class AfterpayPurchaseRequest extends AbstractRequest
     public function setHousenumber($housenumber)
     {
         $this->setParameter('housenumber',intval($housenumber));
+    }
+
+    /**
+     * @param mixed $housenumberSuffix
+     */
+    public function setHousenumberSuffix($housenumberSuffix)
+    {
+        $this->setParameter('housenumberSuffix',$housenumberSuffix);
     }
 
     /**
