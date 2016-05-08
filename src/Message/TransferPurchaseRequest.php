@@ -3,14 +3,14 @@
 namespace Omnipay\Buckaroo\Message;
 
 /**
- * Buckaroo iDeal Purchase Request
+ * Buckaroo Transfer Purchase Request
  */
-class IdealPurchaseRequest extends AbstractRequest
+class TransferPurchaseRequest extends AbstractRequest
 {
     public function getData()
     {
         $data = parent::getData();
-        $data['Brq_payment_method'] = 'ideal';
+        $data['Brq_payment_method'] = 'transfer';
 
         return $data;
     }

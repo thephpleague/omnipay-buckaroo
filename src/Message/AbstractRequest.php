@@ -30,11 +30,32 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->setParameter('secretKey', $value);
     }
 
+    public function getErrorUrl()
+    {
+        return $this->getParameter('errorUrl');
+    }
+
+    public function setErrorUrl($errorUrl)
+    {
+        $this->setParameter('errorUrl', $errorUrl);
+    }
+
+    public function getRejectUrl()
+    {
+        return $this->getParameter('rejectUrl');
+    }
+
+    public function setRejectUrl($rejectUrl)
+    {
+        $this->setParameter('rejectUrl', $rejectUrl);
+    }
+
     public function getData()
     {
         $this->validate('websiteKey', 'secretKey', 'amount', 'returnUrl');
 
         $data = array();
+
         $data['Brq_websitekey'] = $this->getWebsiteKey();
         $data['Brq_amount'] = $this->getAmount();
         $data['Brq_currency'] = $this->getCurrency();
