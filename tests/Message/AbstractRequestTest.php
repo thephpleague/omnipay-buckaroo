@@ -31,7 +31,7 @@ class PurchaseRequestTest extends TestCase
             'transactionId' => 13,
             'returnUrl' => 'https://www.example.com/return',
             'cancelUrl' => 'https://www.example.com/cancel',
-            'culture' => 'nl-NL'
+            'culture' => 'nl-NL',
         ));
 
         $data = $this->request->getData();
