@@ -31,6 +31,7 @@ class PurchaseRequestTest extends TestCase
             'transactionId' => 13,
             'returnUrl' => 'https://www.example.com/return',
             'cancelUrl' => 'https://www.example.com/cancel',
+            'culture' => 'nl-NL',
         ));
 
         $data = $this->request->getData();
@@ -41,6 +42,7 @@ class PurchaseRequestTest extends TestCase
         $this->assertSame(13, $data['Brq_invoicenumber']);
         $this->assertSame('https://www.example.com/return', $data['Brq_return']);
         $this->assertSame('https://www.example.com/cancel', $data['Brq_returncancel']);
+        $this->assertSame('nl-NL', $data['Brq_culture']);
     }
 
     public function testGenerateSignature()
