@@ -40,6 +40,37 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->setParameter('culture', $value);
     }
 
+    public function getRejectUrl()
+    {
+        return $this->getParameter('rejectUrl');
+    }
+
+    public function setRejectUrl($value)
+    {
+        return $this->setParameter('rejectUrl', $value);
+    }
+
+    public function getErrorUrl()
+    {
+        return $this->getParameter('errorUrl');
+    }
+
+    public function setErrorUrl($value)
+    {
+        return $this->setParameter('errorUrl', $value);
+    }
+
+    /**
+     * Sets the request cancel URL.
+     *
+     * @param string $value
+     * @return AbstractRequest Provides a fluent interface
+     */
+    public function setCancelUrl($value)
+    {
+        return $this->setParameter('cancelUrl', $value);
+    }
+
     public function getData()
     {
         $this->validate('websiteKey', 'secretKey', 'amount', 'returnUrl');
@@ -52,7 +83,10 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         $data['Brq_description'] = $this->getDescription();
         $data['Brq_return'] = $this->getReturnUrl();
         $data['Brq_returncancel'] = $this->getCancelUrl();
+        $data['Brq_returnreject'] = $this->getRejectUrl();
+        $data['Brq_returnerror'] = $this->getErrorUrl();
         $data['Brq_culture'] = $this->getCulture();
+
 
         return $data;
     }
