@@ -5,7 +5,7 @@ namespace Omnipay\Buckaroo\Message;
 use Mockery as m;
 use Omnipay\Tests\TestCase;
 
-class PurchaseRequestTest extends TestCase
+class AbstractRequestTest extends TestCase
 {
     public function setUp()
     {

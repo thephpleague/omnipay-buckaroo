@@ -43,6 +43,11 @@ class BuckarooGateway extends AbstractGateway
         return $this->setParameter('secretKey', $value);
     }
 
+    public function purchase(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\Buckaroo\Message\PurchaseRequest', $parameters);
+    }
+
     public function completePurchase(array $parameters = array())
     {
         return $this->createRequest('\Omnipay\Buckaroo\Message\CompletePurchaseRequest', $parameters);
