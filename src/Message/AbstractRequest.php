@@ -40,21 +40,45 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->setParameter('culture', $value);
     }
 
+    /**
+     * @return string url rejectUrl
+     */
     public function getRejectUrl()
     {
         return $this->getParameter('rejectUrl');
     }
 
+    /**
+     * sets the Reject URL which is used by buckaroo when
+     * the payment is rejected.
+     *
+     * @param $value
+     *
+     * @return \Omnipay\Common\Message\AbstractRequest
+     */
     public function setRejectUrl($value)
     {
         return $this->setParameter('rejectUrl', $value);
     }
 
+    /**
+     * returns the error URL
+     *
+     * @return string errorUrl
+     */
     public function getErrorUrl()
     {
         return $this->getParameter('errorUrl');
     }
 
+    /**
+     * sets the error URL which is used by buckaroo when
+     * the payment results in an error
+     *
+     * @param $value
+     *
+     * @return \Omnipay\Common\Message\AbstractRequest
+     */
     public function setErrorUrl($value)
     {
         return $this->setParameter('errorUrl', $value);
