@@ -3,7 +3,7 @@
 namespace Omnipay\Buckaroo;
 
 /**
- * Buckaroo iDeal Gateway
+ * Buckaroo SEPA Direct Debit Gateway
  */
 class SepaDirectDebitGateway extends BuckarooGateway
 {
