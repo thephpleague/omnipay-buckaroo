@@ -5,7 +5,7 @@ namespace Omnipay\Buckaroo;
 /**
  * Buckaroo SEPA Direct Debit Gateway
  */
-class SepaDirectDebitGateway extends BuckarooGateway
+class SepaDirectDebitGateway extends Gateway
 {
     public function getName()
     {

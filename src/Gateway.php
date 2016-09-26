@@ -7,11 +7,11 @@ use Omnipay\Common\AbstractGateway;
 /**
  * Buckaroo Credit Card Gateway
  */
-class BuckarooGateway extends AbstractGateway
+class Gateway extends AbstractGateway
 {
     public function getName()
     {
-        return 'Buckaroo Gateway';
+        return 'Buckaroo';
     }
 
     public function getDefaultParameters()
