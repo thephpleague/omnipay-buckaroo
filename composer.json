@@ -18,6 +18,10 @@
             "email": "adrian@adrianmacneil.com"
         },
         {
+            "name": "Mati Kochen",
+            "homepage": "https://github.com/kochen"
+        },
+        {
             "name": "Omnipay Contributors",
             "homepage": "https://github.com/thephpleague/omnipay-buckaroo/contributors"
         }
@@ -26,14 +30,17 @@
         "psr-4": { "Omnipay\\Buckaroo\\" : "src/" }
     },
     "require": {
-        "omnipay/common": "~2.0"
+        "omnipay/common": "~3.0"
     },
     "require-dev": {
-        "omnipay/tests": "~2.0"
+        "omnipay/tests": "~3.0",
+        "squizlabs/php_codesniffer": "^2.8.1"
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.0.x-dev"
+            "dev-master": "3.0.x-dev"
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

@@ -7,7 +7,7 @@
 [![Total Downloads](https://poser.pugx.org/omnipay/buckaroo/d/total.png)](https://packagist.org/packages/omnipay/buckaroo)
 
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment
-processing library for PHP 5.3+. This package implements Buckaroo support for Omnipay.
+processing library for PHP 5.6+. This package implements Buckaroo support for Omnipay.
 
 ## Installation
 
@@ -17,7 +17,7 @@ to your `composer.json` file:
 ```json
 {
     "require": {
-        "omnipay/buckaroo": "~2.0"
+        "omnipay/buckaroo": "~3.0"
     }
 }
 ```
