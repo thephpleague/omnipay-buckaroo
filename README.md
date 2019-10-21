@@ -35,6 +35,7 @@ The following gateways are provided by this package:
 * Buckaroo_Ideal
 * Buckaroo_PayPal
 * Buckaroo_SepaDirectDebit
+* Buckaroo_BancontactMrCash
 
 For general usage instructions, please see the main [Omnipay](https://github.com/thephpleague/omnipay)
 repository.
