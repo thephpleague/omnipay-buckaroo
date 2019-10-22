@@ -34,6 +34,8 @@ class AbstractRequestTest extends TestCase
             'errorUrl' => 'https://www.example.com/error',
             'rejectUrl' => 'https://www.example.com/reject',
             'culture' => 'nl-NL',
+            'pushUrl' => 'https://www.example.com/push',
+            'pushfailureUrl' => 'https://www.example.com/pushfailure',
         ));
 
         $data = $this->request->getData();
@@ -47,6 +49,8 @@ class AbstractRequestTest extends TestCase
         $this->assertSame('https://www.example.com/error', $data['Brq_returnerror']);
         $this->assertSame('https://www.example.com/reject', $data['Brq_returnreject']);
         $this->assertSame('nl-NL', $data['Brq_culture']);
+        $this->assertSame('https://www.example.com/push', $data['Brq_push']);
+        $this->assertSame('https://www.example.com/pushfailure', $data['Brq_pushfailure']);
     }
 
     public function testGenerateSignature()
