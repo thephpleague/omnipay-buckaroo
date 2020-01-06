@@ -11,7 +11,7 @@ class CompletePurchaseRequest extends AbstractRequest
 {
     public function getData()
     {
-        $this->validate('websiteKey', 'secretKey', 'amount');
+        $this->validate('websiteKey', 'secretKey');
 
         $originalData = $this->httpRequest->request->all();
         $data = array_change_key_case($originalData, CASE_UPPER);
